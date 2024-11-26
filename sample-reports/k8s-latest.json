@@ -1,0 +1,384 @@
+{
+    "platform": {
+        "name": "k8s",
+        "release": "0.1.12",
+        "target_id": "a2d285e5-71ea-53ba-951e-1247b85a26d3"
+    },
+    "profiles": [
+        {
+            "attributes": [],
+            "controls": [
+                {
+                    "code": "control 'k8s-1.0' do\n  impact 1.0\n  title 'Validate built-in namespaces'\n  desc 'The kube-system, kube-public, and default namespaces should exist'\n\n  describe k8s_namespace(name: 'kube-system') do\n    it { should exist }\n  end\n  describe k8s_namespace(name: 'kube-public') do\n    it { should exist }\n  end\n  describe k8s_namespace(name: 'default') do\n    it { should exist }\n  end\nend\n",
+                    "desc": "The kube-system, kube-public, and default namespaces should exist",
+                    "descriptions": [
+                        {
+                            "data": "The kube-system, kube-public, and default namespaces should exist",
+                            "label": "default"
+                        }
+                    ],
+                    "id": "k8s-1.0",
+                    "impact": 1.0,
+                    "refs": [],
+                    "results": [
+                        {
+                            "code_desc": "kube-system is expected to exist",
+                            "resource_class": "k8s_namespace",
+                            "resource_id": "5b1ad9c8-51a2-46d8-9d07-a1caf0bc85f9",
+                            "resource_params": "[{:name=>\"kube-system\", :type=>\"namespaces\", :api=>\"v1\", :namespace=>nil}]",
+                            "run_time": 0.001403924,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        },
+                        {
+                            "code_desc": "kube-public is expected to exist",
+                            "resource_class": "k8s_namespace",
+                            "resource_id": "876527ba-85e0-4c22-8759-36f1f5d66745",
+                            "resource_params": "[{:name=>\"kube-public\", :type=>\"namespaces\", :api=>\"v1\", :namespace=>nil}]",
+                            "run_time": 9.2037e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        },
+                        {
+                            "code_desc": "default is expected to exist",
+                            "resource_class": "k8s_namespace",
+                            "resource_id": "18e836ad-9e4c-48b5-8e8b-20daed7e7698",
+                            "resource_params": "[{:name=>\"default\", :type=>\"namespaces\", :api=>\"v1\", :namespace=>nil}]",
+                            "run_time": 6.5349e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        }
+                    ],
+                    "source_location": {
+                        "line": 3,
+                        "ref": "./profiles/k8s-basics/controls/basics.rb"
+                    },
+                    "tags": {},
+                    "title": "Validate built-in namespaces",
+                    "waiver_data": {}
+                },
+                {
+                    "code": "control 'k8s-1.1' do\n  impact 1.0\n  title 'Validate Storage Provisioner'\n  desc 'The storage-provisioner pod should exist and be running'\n\n  describe k8s_pod(namespace: 'kube-system', name: 'storage-provisioner') do\n    it { should exist }\n    it { should be_running }\n  end\nend\n",
+                    "desc": "The storage-provisioner pod should exist and be running",
+                    "descriptions": [
+                        {
+                            "data": "The storage-provisioner pod should exist and be running",
+                            "label": "default"
+                        }
+                    ],
+                    "id": "k8s-1.1",
+                    "impact": 1.0,
+                    "refs": [],
+                    "results": [
+                        {
+                            "backtrace": [
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner.rb:366:in `block (2 levels) in rspec_failed_block'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:263:in `instance_exec'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:263:in `block in run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:511:in `block in with_around_and_singleton_context_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:468:in `block in with_around_example_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/hooks.rb:486:in `block in run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/hooks.rb:624:in `run_around_example_hooks_for'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/hooks.rb:486:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:468:in `with_around_example_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:511:in `with_around_and_singleton_context_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:259:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:646:in `block in run_examples'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:642:in `map'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:642:in `run_examples'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:607:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:121:in `block (3 levels) in run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:121:in `map'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:121:in `block (2 levels) in run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/configuration.rb:2070:in `with_suite_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:116:in `block in run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/reporter.rb:74:in `report'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:115:in `run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner_rspec.rb:97:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner.rb:222:in `run_tests'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner.rb:178:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/cli.rb:410:in `block in exec'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/feature/runner.rb:21:in `with_feature'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/feature.rb:6:in `with_feature'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/cli.rb:395:in `exec'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor/command.rb:27:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor/invocation.rb:127:in `invoke_command'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor.rb:392:in `dispatch'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor/base.rb:485:in `start'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/base_cli.rb:40:in `start'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-bin-6.6.0/bin/inspec:11:in `<top (required)>'",
+                                "/usr/bin/inspec:280:in `load'",
+                                "/usr/bin/inspec:280:in `<main>'"
+                            ],
+                            "code_desc": "kube-system/storage-provisioner ",
+                            "exception": "Inspec::Exceptions::ResourceFailed",
+                            "message": "pods \"storage-provisioner\" not found",
+                            "resource_class": "k8s_pod",
+                            "resource_id": "",
+                            "resource_params": "[{:namespace=>\"kube-system\", :name=>\"storage-provisioner\", :type=>\"pods\", :api=>\"v1\"}]",
+                            "run_time": 7.5376e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "failed"
+                        }
+                    ],
+                    "source_location": {
+                        "line": 19,
+                        "ref": "./profiles/k8s-basics/controls/basics.rb"
+                    },
+                    "tags": {},
+                    "title": "Validate Storage Provisioner",
+                    "waiver_data": {
+                        "expiration_date": "2025-03-26",
+                        "justification": "Under review by security team",
+                        "message": "",
+                        "run": true,
+                        "skipped_due_to_waiver": false
+                    }
+                },
+                {
+                    "code": "control 'k8s-1.2' do\n  impact 1.0\n  title 'Check config map existence'\n  desc 'The configmaps should exist'\n\n  describe k8s_config_map(name: 'kube-root-ca.crt') do\n    it { should exist }\n  end\nend\n",
+                    "desc": "The configmaps should exist",
+                    "descriptions": [
+                        {
+                            "data": "The configmaps should exist",
+                            "label": "default"
+                        }
+                    ],
+                    "id": "k8s-1.2",
+                    "impact": 1.0,
+                    "refs": [],
+                    "results": [
+                        {
+                            "code_desc": "default/kube-root-ca.crt is expected to exist",
+                            "resource_class": "k8s_config_map",
+                            "resource_id": "cd20da6d-0cbe-48f0-bf97-f542e1cb7de7",
+                            "resource_params": "[{:name=>\"kube-root-ca.crt\", :type=>\"configmaps\", :api=>\"v1\", :namespace=>\"default\"}]",
+                            "run_time": 7.1618e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        }
+                    ],
+                    "source_location": {
+                        "line": 30,
+                        "ref": "./profiles/k8s-basics/controls/basics.rb"
+                    },
+                    "tags": {},
+                    "title": "Check config map existence",
+                    "waiver_data": {}
+                },
+                {
+                    "code": "control 'k8s-1.3' do\n  impact 1.0\n  title 'Check config map existence'\n  desc 'The configmaps should exist'\n  describe k8s_containers(namespace: 'kube-system').where {\n             securityContext && securityContext[:readOnlyRootFilesystem] == true\n           } do\n    it { should exist }\n  end\nend\n",
+                    "desc": "The configmaps should exist",
+                    "descriptions": [
+                        {
+                            "data": "The configmaps should exist",
+                            "label": "default"
+                        }
+                    ],
+                    "id": "k8s-1.3",
+                    "impact": 1.0,
+                    "refs": [],
+                    "results": [
+                        {
+                            "code_desc": "k8s_containers with securityContext securityContext [] :readOnlyRootFilesystem == true is expected to exist",
+                            "resource_class": "FilterTable::Table",
+                            "resource_id": "",
+                            "resource_params": "[]",
+                            "run_time": 8.991e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        }
+                    ],
+                    "source_location": {
+                        "line": 40,
+                        "ref": "./profiles/k8s-basics/controls/basics.rb"
+                    },
+                    "tags": {},
+                    "title": "Check config map existence",
+                    "waiver_data": {}
+                },
+                {
+                    "code": "control 'k8s-1.4' do\n  impact 1.0\n  title 'Check RBAC roles for admin'\n  desc 'RBAC roles for admin '\n  describe k8s_rbac_cluster_role(name: 'admin') do\n    it { should exist }\n    its('cluster_role_selectors') do\n      should include({ matchLabels: { \"rbac.authorization.k8s.io/aggregate-to-admin\": 'true' } })\n    end\n  end\nend\n",
+                    "desc": "RBAC roles for admin",
+                    "descriptions": [
+                        {
+                            "data": "RBAC roles for admin",
+                            "label": "default"
+                        }
+                    ],
+                    "id": "k8s-1.4",
+                    "impact": 1.0,
+                    "refs": [],
+                    "results": [
+                        {
+                            "code_desc": "admin is expected to exist",
+                            "resource_class": "k8s_rbac_cluster_role",
+                            "resource_id": "50417b32-11a8-4c6a-a35d-0d64f14249bb",
+                            "resource_params": "[{:name=>\"admin\", :type=>\"clusterroles\", :api=>\"rbac.authorization.k8s.io/v1\", :namespace=>nil}]",
+                            "run_time": 6.7786e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        },
+                        {
+                            "code_desc": "admin cluster_role_selectors is expected to include {:matchLabels => {:\"rbac.authorization.k8s.io/aggregate-to-admin\" => \"true\"}}",
+                            "resource_class": "k8s_rbac_cluster_role",
+                            "resource_id": "50417b32-11a8-4c6a-a35d-0d64f14249bb",
+                            "resource_params": "[{:name=>\"admin\", :type=>\"clusterroles\", :api=>\"rbac.authorization.k8s.io/v1\", :namespace=>nil}]",
+                            "run_time": 0.003181484,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "passed"
+                        }
+                    ],
+                    "source_location": {
+                        "line": 51,
+                        "ref": "./profiles/k8s-basics/controls/basics.rb"
+                    },
+                    "tags": {},
+                    "title": "Check RBAC roles for admin",
+                    "waiver_data": {}
+                },
+                {
+                    "code": "control 'k8s-1.5' do\n  impact 1.0\n  title 'Check Network Policy'\n  desc 'existence of ingress denial policy in default namespace'\n  describe k8s_network_policy(name: 'default-deny-ingress', namespace: 'default') do\n    it { should exist }\n  end\nend\n",
+                    "desc": "existence of ingress denial policy in default namespace",
+                    "descriptions": [
+                        {
+                            "data": "existence of ingress denial policy in default namespace",
+                            "label": "default"
+                        }
+                    ],
+                    "id": "k8s-1.5",
+                    "impact": 1.0,
+                    "refs": [],
+                    "results": [
+                        {
+                            "backtrace": [
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner.rb:366:in `block (2 levels) in rspec_failed_block'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:263:in `instance_exec'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:263:in `block in run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:511:in `block in with_around_and_singleton_context_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:468:in `block in with_around_example_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/hooks.rb:486:in `block in run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/hooks.rb:624:in `run_around_example_hooks_for'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/hooks.rb:486:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:468:in `with_around_example_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:511:in `with_around_and_singleton_context_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example.rb:259:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:646:in `block in run_examples'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:642:in `map'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:642:in `run_examples'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/example_group.rb:607:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:121:in `block (3 levels) in run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:121:in `map'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:121:in `block (2 levels) in run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/configuration.rb:2070:in `with_suite_hooks'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:116:in `block in run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/reporter.rb:74:in `report'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/rspec-core-3.12.2/lib/rspec/core/runner.rb:115:in `run_specs'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner_rspec.rb:97:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner.rb:222:in `run_tests'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/runner.rb:178:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/cli.rb:410:in `block in exec'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/feature/runner.rb:21:in `with_feature'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/feature.rb:6:in `with_feature'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/cli.rb:395:in `exec'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor/command.rb:27:in `run'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor/invocation.rb:127:in `invoke_command'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor.rb:392:in `dispatch'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/thor-1.2.2/lib/thor/base.rb:485:in `start'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-core-6.6.0/lib/inspec/base_cli.rb:40:in `start'",
+                                "/opt/inspec/embedded/lib/ruby/gems/3.1.0/gems/inspec-bin-6.6.0/bin/inspec:11:in `<top (required)>'",
+                                "/usr/bin/inspec:280:in `load'",
+                                "/usr/bin/inspec:280:in `<main>'"
+                            ],
+                            "code_desc": "default/default-deny-ingress ",
+                            "exception": "Inspec::Exceptions::ResourceFailed",
+                            "message": "networkpolicies.networking.k8s.io \"default-deny-ingress\" not found",
+                            "resource_class": "k8s_network_policy",
+                            "resource_id": "",
+                            "resource_params": "[{:name=>\"default-deny-ingress\", :namespace=>\"default\", :type=>\"networkpolicies\", :api=>\"networking.k8s.io/v1\"}]",
+                            "run_time": 7.8127e-05,
+                            "start_time": "2024-03-26T20:32:15+00:00",
+                            "status": "failed"
+                        }
+                    ],
+                    "source_location": {
+                        "line": 63,
+                        "ref": "./profiles/k8s-basics/controls/basics.rb"
+                    },
+                    "tags": {},
+                    "title": "Check Network Policy",
+                    "waiver_data": {
+                        "expiration_date": "2025-03-26",
+                        "justification": "Under review by security team",
+                        "message": "",
+                        "run": true,
+                        "skipped_due_to_waiver": false
+                    }
+                }
+            ],
+            "copyright": "Sathish Babu",
+            "copyright_email": "sbabu@progress.com",
+            "depends": [
+                {
+                    "name": "inspec-k8s",
+                    "status": "loaded",
+                    "url": "https://github.com/inspec/inspec-k8s/archive/main.tar.gz"
+                }
+            ],
+            "groups": [
+                {
+                    "controls": [
+                        "k8s-1.0",
+                        "k8s-1.1",
+                        "k8s-1.2",
+                        "k8s-1.3",
+                        "k8s-1.4",
+                        "k8s-1.5"
+                    ],
+                    "id": "controls/basics.rb",
+                    "title": "Kubernetes Basics"
+                }
+            ],
+            "license": "Apache-2.0",
+            "maintainer": "Sathish Babu",
+            "name": "inspec-k8s-sample",
+            "sha256": "1b91c754fd90c2c0a2093ae3289274821ded2fb071ddfda0e0a9ea9cdec53c80",
+            "status": "loaded",
+            "status_message": "",
+            "summary": "An Example K8s Chef InSpec Compliance Profile",
+            "supports": [
+                {
+                    "platform": "k8s"
+                }
+            ],
+            "title": "InSpec K8s Profile",
+            "version": "0.1.0"
+        },
+        {
+            "attributes": [],
+            "controls": [],
+            "copyright": "Brad Geesaman",
+            "copyright_email": "bradgeesaman@gmail.com",
+            "groups": [],
+            "license": "Apache-2.0",
+            "maintainer": "Brad Geesaman",
+            "name": "inspec-k8s",
+            "parent_profile": "inspec-k8s-sample",
+            "sha256": "cdf41ed7833b68ed3e6ead05f4e298d7bf768623912c38b9b16b674dd649d250",
+            "status": "loaded",
+            "status_message": "",
+            "summary": "An InSpec Kubernetes Resource Pack",
+            "supports": [
+                {
+                    "platform": "k8s"
+                }
+            ],
+            "title": "InSpec Profile",
+            "version": "0.1.3"
+        }
+    ],
+    "statistics": {
+        "duration": 0.008537541
+    },
+    "version": "6.6.0"
+}

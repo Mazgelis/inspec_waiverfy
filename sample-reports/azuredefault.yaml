@@ -1,0 +1,197 @@
+---
+:platform:
+  :name: azure
+  :release: azure_mgmt_resources-v0.18.2
+  :target_id: e2929914-5fda-5e55-9897-c5b85179231f
+:profiles:
+- :name: sa-azure-wrapper
+  :version: 0.1.0
+  :sha256: bf9cbc9d012d4c080bc7a278ce9f79a67bbfbb7f3a7082035ef1cae432d095ad
+  :title: Azure InSpec Profile
+  :maintainer: The Authors
+  :summary: An InSpec Compliance Profile For Azure
+  :license: Apache-2.0
+  :copyright: The Authors
+  :copyright_email: you@example.com
+  :supports:
+  - :platform: azure
+  :attributes: []
+  :depends:
+  - :name: inspec-azure
+    :url: https://github.com/inspec/inspec-azure/archive/main.tar.gz
+    :status: loaded
+  :groups:
+  - :id: controls/example.rb
+    :controls:
+    - azure-virtual-machines-exist-check
+    :title: Sample Section
+  :controls:
+  - :id: azure-virtual-machines-exist-check
+    :title: Check resource groups to see if any VMs exist.
+    :desc:
+    :descriptions: []
+    :impact: 1.0
+    :refs: []
+    :tags: {}
+    :code: |
+      control "azure-virtual-machines-exist-check" do                                # A unique ID for this control.
+        impact 1.0                                                                   # The criticality, if this control fails.
+        title "Check resource groups to see if any VMs exist."                       # A human-readable title
+        azurerm_resource_groups.names.each do |resource_group_name|                  # Plural resources can be leveraged to loop across many resources
+          describe azurerm_virtual_machines(resource_group: resource_group_name) do
+            it { should exist } # The test itself.
+          end
+        end
+      end
+    :source_location:
+      :line: 6
+      :ref: "./profiles/sa-azure-wrapper/controls/example.rb"
+    :waiver_data: {}
+    :results:
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        ResourceMoverRG-westus-eastus2-eus2 Microsoft.Compute/virtualMachines is expected
+        to exist'
+      :run_time: 0.013516236
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        ResourceMoverRG-westus-eastus2-eus2 Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"ResourceMoverRG-westus-eastus2-eus2",
+        :api_version=>"2017-12-01", :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        butler-sa Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 0.000215863
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        butler-sa Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"butler-sa", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        cloud-custodian Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 9.7618e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        cloud-custodian Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"cloud-custodian", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        DefaultResourceGroup-EUS Microsoft.Compute/virtualMachines is expected to
+        exist'
+      :run_time: 9.329e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        DefaultResourceGroup-EUS Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"DefaultResourceGroup-EUS", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        AzureBackupRG_eastus_1 Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 9.113e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        AzureBackupRG_eastus_1 Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"AzureBackupRG_eastus_1", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        cloud-shell-storage-eastus Microsoft.Compute/virtualMachines is expected to
+        exist'
+      :run_time: 9.0249e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        cloud-shell-storage-eastus Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"cloud-shell-storage-eastus", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        NetworkWatcherRG Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 9.3921e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        NetworkWatcherRG Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"NetworkWatcherRG", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        DEFAULT-EVENTGRID Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 0.000233539
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        DEFAULT-EVENTGRID Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"DEFAULT-EVENTGRID", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        sa-jmaz Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 0.00010392
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        sa-jmaz Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"sa-jmaz", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        azure-dns-rg Microsoft.Compute/virtualMachines is expected to exist'
+      :run_time: 9.2237e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        azure-dns-rg Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"azure-dns-rg", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+    - :status: failed
+      :code_desc: 'Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        habitat_windows_workstations Microsoft.Compute/virtualMachines is expected
+        to exist'
+      :run_time: 8.9783e-05
+      :start_time: '2024-03-26T00:50:28+00:00'
+      :message: 'expected Azure Virtual Machines - api_version: 2017-12-01 user_provided
+        habitat_windows_workstations Microsoft.Compute/virtualMachines to exist'
+      :resource_class: azurerm_virtual_machines
+      :resource_params: '[{:resource_group=>"habitat_windows_workstations", :api_version=>"2017-12-01",
+        :resource_provider=>"Microsoft.Compute/virtualMachines"}]'
+      :resource_id: ''
+  :status: loaded
+  :status_message: ''
+- :name: inspec-azure
+  :version: 1.118.43
+  :sha256: d4baf39bfafb6c1295ea2b7aa77b45d28ba636e90754aac18f319b65413652ea
+  :title: Azure Resource Pack
+  :maintainer: Chef Software, Inc.
+  :summary: This resource pack provides compliance resources for Azure.
+  :license: Apache-2.0
+  :copyright: Chef Software, Inc.
+  :copyright_email: support@chef.io
+  :supports:
+  - :platform: azure
+  :attributes: []
+  :parent_profile: sa-azure-wrapper
+  :groups: []
+  :controls: []
+  :status: loaded
+  :status_message: ''
+:statistics:
+  :duration: 0.018678213
+:version: 6.6.0
